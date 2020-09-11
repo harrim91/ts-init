@@ -24,7 +24,7 @@ then
   should_update=${should_update:-y}
 
   case "$should_update" in
-      [yY$'\n']) git pull ;;
+      [yY$'\n']) git pull --ff-only ;;
       *) echo "[ts-init] Skipping update" ;;
   esac
 else
