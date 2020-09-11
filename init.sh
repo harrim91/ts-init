@@ -24,11 +24,19 @@ then
   should_update=${should_update:-y}
 
   case "$should_update" in
-      [yY$'\n']) git pull --ff-only ;;
-      *) echo "[ts-init] Skipping update" ;;
+      [yY$'\n'])
+        git pull --ff-only
+        echo "[ts-init] Updated successfully."
+        echo "[ts-init] Please run ts-init again to use the latest version."
+        exit 0
+        ;;
+
+      *)
+        echo "[ts-init] Skipping update."
+        ;;
   esac
 else
-  echo "[ts-init] No updates available"
+  echo "[ts-init] No updates available."
 fi
 
 echo
@@ -59,17 +67,17 @@ fi
 
 if [ -d $name ]
 then
-  echo "[ts-init] A directory with this name already exists"
+  echo "[ts-init] A directory with this name already exists."
   exit 1
 fi
 
 if [ $package_manager != npm ] && [ $package_manager != yarn ]
 then
-  echo "[ts-init] Invalid package manager specified. Valid values are 'npm' and 'yarn'"
+  echo "[ts-init] Invalid package manager specified. Valid values are 'npm' and 'yarn'."
   exit 1
 fi
 
-echo "[ts-init] Creating new TypeScript project in $PWD/$name"
+echo "[ts-init] Creating new TypeScript project in $TARGET_DIR/$name."
 echo
 
 # copy project template to new directory
