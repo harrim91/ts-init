@@ -53,7 +53,7 @@ done
 # validate parameters
 if [ -z $name ]
 then
-  echo "[ts-init] No project name given"
+  echo "[ts-init] No project name given. Please pass a project name using the --name flag."
   exit 1
 fi
 

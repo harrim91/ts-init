@@ -16,4 +16,7 @@ Utility to bootstrap TypeScript projects
 - `--git-email` - `ts-init` creates a git repository for you in your new project. By default it will use your global git email, but you can override it with this option.
 - `--package-manager` - package manager to use - yarn or npm. default is npm.
 
+## Uninstall
 
+- remove the symbolic link between the script and somewhere in your PATH - `unlink /usr/local/bin/ts-init`
+- remove the directory from somewhere useful `rm -rf ~/.ts-init`
