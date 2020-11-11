@@ -47,6 +47,7 @@ cd $TARGET_DIR
 name=${name}
 git_email=${git_email:-$(git config --global user.email)}
 package_manager=${package_manager:-npm}
+use_git=${use_git:-true}
 
 # loop through given named parameters and set them as variables
 while [ $# -gt 0 ]; do
@@ -77,6 +78,12 @@ then
   exit 1
 fi
 
+if [ $use_git != true ] && [ $use_git != false ]
+then
+  echo "[ts-init] Invalid value for \"--use_git\". Valid values are 'true' and 'false'."
+  exit 1
+fi
+
 echo "[ts-init] Creating new TypeScript project in $TARGET_DIR/$name."
 echo
 
@@ -101,10 +108,14 @@ echo "[ts-init] Updating dependencies to latest compatible versions..."
 $package_manager upgrade
 echo
 
-echo "[ts-init] Creating Git repository..."
-git init
-git config user.email $git_email
-git add .
-git commit -m "Initial commit"
-echo
+if [ $use_git == true ]
+then
+  echo "[ts-init] Creating Git repository..."
+  git init
+  git config user.email $git_email
+  git add .
+  git commit -m "Initial commit"
+  echo
+fi
+
 echo "[ts-init] Done!"
