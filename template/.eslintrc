@@ -11,7 +11,16 @@
     "plugin:prettier/recommended"
   ],
   "env": {
-    "node": true,
-    "jest": true
-  }
+    "node": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.ts"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
