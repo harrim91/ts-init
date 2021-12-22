@@ -98,14 +98,21 @@ mv package.json.tmp package.json
 # create a basic readme
 echo "# $name" > README.md
 
-echo "[ts-init] Installing dependencies..."
-$package_manager install
+
+echo "[ts-init] Installing dependencies with $package_manager..."
+
+DEV_DEPENDENCIES="@types/jest @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-prettier jest prettier ts-jest typescript"
+
+INSTALL_DEV_COMMAND="install -D"
+
+if [ $package_manager == yarn ]
+then
+  INSTALL_DEV_COMMAND="add -D"
+fi
+
+$package_manager $INSTALL_DEV_COMMAND $DEV_DEPENDENCIES
 echo "[ts-init] Done!"
 
-echo
-
-echo "[ts-init] Updating dependencies to latest compatible versions..."
-$package_manager upgrade
 echo
 
 if [ $use_git == true ]
