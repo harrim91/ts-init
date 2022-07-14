@@ -1,0 +1,9 @@
+FROM node:16-alpine
+
+RUN adduser --disabled-password service
+
+USER service
+
+WORKDIR /home/service
+
+CMD npm run watch

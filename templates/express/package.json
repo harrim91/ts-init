@@ -1,0 +1,21 @@
+{
+  "name": "ts-init",
+  "main": "src/index.ts",
+  "private": "true",
+  "scripts": {
+    "start": "docker compose up --build -d",
+    "stop": "docker compose down --rmi local",
+    "build": "tsc",
+    "logs": "docker compose logs -f",
+    "watch": "tsnd --files --respawn -r dotenv/config src/index.ts",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testEnvironment": "node"
+  }
+}
