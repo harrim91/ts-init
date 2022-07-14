@@ -1,6 +1,6 @@
 # ts-init
 
-Utility to bootstrap TypeScript projects
+Utility to bootstrap TypeScript projects.
 
 ## Install
 
@@ -16,8 +16,19 @@ Utility to bootstrap TypeScript projects
 - `--use-git` - `true` or `false` - whether to initialize a git repository in your project. default is `true`.
 - `--git-email` - if `ts-init` creates a git repository for you in your new project, by default it will use your global git email. You can override it with this option.
 - `--package-manager` - package manager to use - `yarn` or `npm`. default is `npm`.
+- `--template` - use a template. Default value is `standard`. Other options are `express`.
 
 ## Uninstall
 
 - remove the symbolic link between the script and somewhere in your PATH - `unlink /usr/local/bin/ts-init`
 - remove the directory from somewhere useful `rm -rf ~/.ts-init`
+
+## Templates
+
+### Standard
+
+A blank "Hello World" template.
+
+### Express
+
+Bootstraps a minimal Express.js app. Includes a production-ready Dockerfile, and local setup utilizing Docker Compose.

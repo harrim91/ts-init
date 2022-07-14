@@ -48,6 +48,7 @@ name=${name}
 git_email=${git_email:-$(git config --global user.email)}
 package_manager=${package_manager:-npm}
 use_git=${use_git:-true}
+template=${template:-standard}
 
 # loop through given named parameters and set them as variables
 while [ $# -gt 0 ]; do
@@ -84,11 +85,17 @@ then
   exit 1
 fi
 
+if [ $template != standard ] && [ $template != express ]
+then
+  echo "[ts-init] Invalid template name specified. Valid values are 'standard' and 'express'."
+  exit 1
+fi
+
 echo "[ts-init] Creating new TypeScript project in $TARGET_DIR/$name."
 echo
 
 # copy project template to new directory
-cp -r $TS_INIT_DIR/template $name
+cp -r $TS_INIT_DIR/templates/$template $name
 cd $name
 
 # update project name in package.json
@@ -98,10 +105,28 @@ mv package.json.tmp package.json
 # create a basic readme
 echo "# $name" > README.md
 
-
 echo "[ts-init] Installing dependencies with $package_manager..."
 
-DEV_DEPENDENCIES="@types/jest @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-prettier jest prettier ts-jest typescript"
+DEPENDENCIES=$(cat dependencies.txt)
+
+INSTALL_COMMAND="install"
+
+if [ $package_manager == yarn ]
+then
+  INSTALL_COMMAND="add"
+fi
+
+$package_manager $INSTALL_COMMAND $DEPENDENCIES
+
+rm dependencies.txt
+
+echo "[ts-init] Done!"
+
+echo
+
+echo "[ts-init] Installing dev dependencies with $package_manager..."
+
+DEV_DEPENDENCIES=$(cat dev-dependencies.txt)
 
 INSTALL_DEV_COMMAND="install -D"
 
@@ -111,6 +136,9 @@ then
 fi
 
 $package_manager $INSTALL_DEV_COMMAND $DEV_DEPENDENCIES
+
+rm dev-dependencies.txt
+
 echo "[ts-init] Done!"
 
 echo

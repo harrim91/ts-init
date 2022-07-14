@@ -1,6 +1,6 @@
 {
   "name": "ts-init",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "private": "true",
   "scripts": {
     "test": "jest"
