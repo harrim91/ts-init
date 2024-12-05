@@ -85,7 +85,7 @@ then
   exit 1
 fi
 
-if [ $template != standard ] && [ $template != express ]
+if [ $template != "standard" ] && [ $template != "express" ] && [ $template != "lambda" ]
 then
   echo "[ts-init] Invalid template name specified. Valid values are 'standard' and 'express'."
   exit 1

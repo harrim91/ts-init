@@ -1,6 +1,9 @@
+@tsconfig/node20
+@types/aws-lambda
 @types/jest
 @typescript-eslint/eslint-plugin
 @typescript-eslint/parser
+esbuild
 eslint
 eslint-config-prettier
 eslint-plugin-prettier
