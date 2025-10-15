@@ -3,13 +3,14 @@
   "main": "src/index.ts",
   "private": "true",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {},
   "devDependencies": {},
   "jest": {
     "transform": {
-      "^.+\\.ts$": "ts-jest"
+      "^.+\\.ts$": "@swc/jest"
     },
     "testEnvironment": "node"
   }

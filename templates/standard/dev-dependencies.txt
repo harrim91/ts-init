@@ -1,10 +1,9 @@
-@types/jest
-@typescript-eslint/eslint-plugin
-@typescript-eslint/parser
+@eslint/js
+@swc/core
+@swc/jest
+@tsconfig/node20
 eslint
-eslint-config-prettier
-eslint-plugin-prettier
+globals
 jest
-prettier
-ts-jest
 typescript
+typescript-eslint
